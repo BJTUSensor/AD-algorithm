@@ -3,13 +3,14 @@ import numpy as np
 def anisodiff2D(img,kappa, num_iter, delta_t,option):
     '''
     Anisotropic diffusion using a typical PM model
-    This model performs anisotropic diffusion on a grey image, which is considered as diffusion conduction of 8 adjacent nodes (directions) in a two-dimensional network structure.
+    This model performs anisotropic diffusion on a grey image, which is considered as diffusion 
+    conduction of 8 adjacent nodes (directions) in a two-dimensional network structure.
     
     parameters：
             IMG         - Original image
-            NUM_ITER    - iteration number
+            NUM_ITER    - Iteration number
             DELTA_T     - Diffusion coefficient (0 <=  delta_t <= 1/7), usually set to max for data stability.
-            KAPPA       - Gradient modulo threshold controls the smoothness of the diffusion, the larger it is, the smoother the image would be.
+            KAPPA       - Gradient modulus threshold controls the smoothness of the diffusion. The larger it is, the smoother the image would be.
             OPTION      - Choice of the diffusion functions by Perona & Malik:
                           1 - c(x,y,t) = exp(-(nablaI/Kappa)**2)
                           2 - c(x,y,t) = 1/(1 + (nalbaI/kappa)**2)
@@ -20,7 +21,7 @@ def anisodiff2D(img,kappa, num_iter, delta_t,option):
     dy = 1
     dd = np.sqrt(2)
 
-    #2D Convolution Mask - Differential gradient in 8 Directions
+    #2D Convolution Mask - Differential gradient in 8 directions
     hN = np.array([[0,1,0],[0,-1,0],[0,0,0]])
     hS = np.array([[0,0,0],[0,-1,0],[0,1,0]])
     hE = np.array([[0,0,0],[0,-1,1],[0,0,0]])
