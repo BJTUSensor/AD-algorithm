@@ -2,25 +2,25 @@ import numpy as np
 
 def anisodiff2D(img,kappa, num_iter, delta_t,option):
     '''
-    ANISODIFF2D 经典PM模型的各向异性扩散 //Anisotropic diffusion using a typical PM model
-    该函数执行灰度图像上的各向异性扩散（经典PM模型），被认为是一个二维的网络结构的8个相邻节点的扩散传导 
-    // This model performs anisotropic diffusion on a grey image, which is considered as diffusion conduction of 8 adjacent nodes (directions) in a two-dimensional network structure.
-    参数描述：//parameters
-            IMG         - 原始图像 //Original image
-            NUM_ITER    - 迭代次数 //iteration number
-            DELTA_T     - 积分常数（0 <=  delta_t <= 1/7),通常情况下，由于数值稳定性，此参数设置为它的最大值 // Diffusion coefficient (0 <=  delta_t <= 1/7), usually set to max for data stability.
-            KAPPA       - 控制传导的梯度模阈值，控制平滑,越大越平滑 // Gradient modulo threshold controls the smoothness of the diffusion, the larger it is, the smoother the image would be.
-            OPTION      - 传导系数函数选择（Perona & Malik 提出）： // Choice of the diffusion functions by Perona & Malik:
+    Anisotropic diffusion using a typical PM model
+    This model performs anisotropic diffusion on a grey image, which is considered as diffusion conduction of 8 adjacent nodes (directions) in a two-dimensional network structure.
+    
+    parameters：
+            IMG         - Original image
+            NUM_ITER    - iteration number
+            DELTA_T     - Diffusion coefficient (0 <=  delta_t <= 1/7), usually set to max for data stability.
+            KAPPA       - Gradient modulo threshold controls the smoothness of the diffusion, the larger it is, the smoother the image would be.
+            OPTION      - Choice of the diffusion functions by Perona & Malik:
                           1 - c(x,y,t) = exp(-(nablaI/Kappa)**2)
                           2 - c(x,y,t) = 1/(1 + (nalbaI/kappa)**2)
     '''
 
-    #中心像素距离 // Distance to central pixel
+    #Distance to central pixel
     dx = 1
     dy = 1
     dd = np.sqrt(2)
 
-    #二维卷积掩模-8个方向上的梯度差分 // 2D Convolution Mask - Differential gradient in 8 Directions
+    #2D Convolution Mask - Differential gradient in 8 Directions
     hN = np.array([[0,1,0],[0,-1,0],[0,0,0]])
     hS = np.array([[0,0,0],[0,-1,0],[0,1,0]])
     hE = np.array([[0,0,0],[0,-1,1],[0,0,0]])
@@ -29,15 +29,16 @@ def anisodiff2D(img,kappa, num_iter, delta_t,option):
     hSE = np.array([[0,0,0],[0,-1,0],[0,0,1]])
     hSW = np.array([[0,0,0],[0,-1,0],[1,0,0]])
     hNW = np.array([[1,0,0],[0,-1,0],[0,0,0]])
-    #各向异性扩散 // Anisotropic diffusion
+    
+    #Anisotropic diffusion
     rows = img.shape[0]
     cols = img.shape[1]
 
     diff_img=img
     for t in range(num_iter):
   
-        #计算8个方向的梯度 // Calculate the gradient in eight directions
-        #nablaN = cv2.filter2D(diff_img, -1, kernel=hN)          #-1:目标图像与原图像深度保持一致 // Keep the same depth of the target and original images
+        #Calculate the gradient in eight directions
+        #nablaN = cv2.filter2D(diff_img, -1, kernel=hN)          #Keep the same depth of the target and original images
         #nablaS = cv2.filter2D(diff_img, -1, kernel=hS)
         #nablaW = cv2.filter2D(diff_img, -1, kernel=hW)
         #nablaE = cv2.filter2D(diff_img, -1, kernel=hE)
@@ -57,7 +58,7 @@ def anisodiff2D(img,kappa, num_iter, delta_t,option):
         nablaSW = diff1[2:,0:cols] - diff_img
         nablaNW = diff1[0:rows,0:cols] - diff_img
 
-        #扩散函数 // Diffusion function
+        #Diffusion function
         if option==1:
             cN = np.exp(-(nablaN/kappa)**2)
             cS = np.exp(-(nablaS/kappa)**2)
@@ -77,7 +78,7 @@ def anisodiff2D(img,kappa, num_iter, delta_t,option):
             cSW = 1 / (1 + (nablaSW / kappa)**2)
             cNW = 1 / (1 + (nablaNW / kappa)**2)
 
-        #离散偏微分方程的解决方案 //Calculate with discrete partial differential equations
+        #Calculate with discrete partial differential equations
         delta = delta_t* (1/dy**2 * cN*nablaN +
                           1/dy**2 * cS*nablaS +
                           1/dx**2 * cW*nablaW +
