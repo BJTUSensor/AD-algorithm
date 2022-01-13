@@ -90,5 +90,5 @@ def anisodiff2D(img,kappa, num_iter, delta_t,option):
                           1/dd**2 * cNW*nablaNW)
 
         diff_img = diff_img + delta
-
+        
     return diff_img
