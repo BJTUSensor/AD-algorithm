@@ -38,3 +38,4 @@ BFS_lortz = np.array(lortz_data)
 x=np.linspace(1,2549,2550)
 plt.plot(x,BFS_lortz)
 plt.show()
+
