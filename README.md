@@ -1,4 +1,4 @@
-# AD-algorithms
+# AD-algorithm
 
 Here, we have provided the code we used for Brillouin Distributed fiber sensors, the Brillouin gain spectra (BGS) data from our cooperative party, as well as the paper we published in Oct. 2020.
 
