@@ -11,3 +11,6 @@ We have provided _IEEE Journal of Lightwave Technology_ paper for better underst
 [1]. Kuo Luo, Biwei Wang, Nan Guo, Kuanglu Yu, et al, Enhancing SNR by Anisotropic Diffusion for Brillouin Distributed Optical Fiber Sensors, IEEE Journal of Lightwave Technology, 38, 5844-5852 (2020).
 
 First Online Date: 22:00 Beijing Time, Jan. 12th, 2022
+
+# Asynchronous-Anisotropic-Diffusion-Algorithm
+This is an improved version of AD Algorithm, please refer to:https://github.com/Lux-Zhang/Asynchronous-Anisotropic-Diffusion-Algorithm. We have provided the  code of  Asynchronous-Anisotropic-Diffusion-Algorithm, and the Optics Express paper there.
