@@ -13,4 +13,4 @@ We have provided _IEEE Journal of Lightwave Technology_ paper for better underst
 First Online Date: 22:00 Beijing Time, Jan. 12th, 2022
 
 # Asynchronous-Anisotropic-Diffusion-Algorithm
-This is an improved version of AD Algorithm, please refer to:https://github.com/Lux-Zhang/Asynchronous-Anisotropic-Diffusion-Algorithm. We have provided the  code of  Asynchronous-Anisotropic-Diffusion-Algorithm, and the Optics Express paper there.
+This is an improved version of AD Algorithm, please refer to the first author(Mr. P. Zhang)'s page:https://github.com/Lux-Zhang/Asynchronous-Anisotropic-Diffusion-Algorithm. We have provided the  code of  Asynchronous-Anisotropic-Diffusion-Algorithm, and the Optics Express paper there.
